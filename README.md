@@ -1,6 +1,8 @@
 # raknet-python
 [![Build Status](https://img.shields.io/github/workflow/status/b23r0/raknet-python/Rust)](https://github.com/b23r0/raknet-python/actions/workflows/rust.yml)
+[![PyPI](https://img.shields.io/pypi/v/raknet-python)](https://pypi.org/project/raknet-python)
 [![ChatOnDiscord](https://img.shields.io/badge/chat-on%20discord-blue)](https://discord.gg/ZKtYMvDFN4)
+
 Python bindings to rust-raknet native library.
 
 # Install
