@@ -6,7 +6,7 @@ use lazy_static::*;
 use pyo3::exceptions::*;
 
 lazy_static!{
-    static ref RT : tokio::runtime::Runtime = tokio::runtime::Runtime::new().unwrap();
+    static ref RT : tokio::runtime::Runtime = tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap();
 }
 
 #[pyclass(name = "RaknetServer")]
@@ -47,7 +47,9 @@ impl RaknetClient{
                 return Err(PyBaseException::new_err("address parse error"));
             }
         };
-        let client = match match RT.block_on(tokio::time::timeout(std::time::Duration::from_secs(10) , RaknetSocket::connect(&address))){
+        let client = match match RT.block_on(async {
+            tokio::time::timeout(std::time::Duration::from_secs(10) , RaknetSocket::connect(&address)).await
+        }){
             Ok(p) => p,
             Err(_) => {
                 return Err(PyBaseException::new_err("connect timeout"));
@@ -144,4 +146,13 @@ impl RaknetServer {
     pub fn setmotd(&mut self , motd : String){
         self.server.set_full_motd(motd).unwrap();
     }
+}
+
+#[pymodule]
+fn raknet_python(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(enablelog, m)?)?;
+    m.add_function(wrap_pyfunction!(ping, m)?)?;
+    m.add_class::<RaknetClient>()?;
+    m.add_class::<RaknetServer>()?;
+    Ok(())
 }
