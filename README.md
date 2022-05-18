@@ -25,6 +25,7 @@ server = RaknetServer("127.0.0.1:19132")
 client1 = RaknetClient("127.0.0.1:19132")
 
 client2 = server.accept()
+# first byte must be 0xfe
 client1.send([0xfe , 0x01 , 0x01 , 0x01])
 buf = client2.recv()
 assert buf == [0xfe , 0x01 , 0x01 , 0x01]
