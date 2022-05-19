@@ -11,7 +11,7 @@ Python bindings to rust-raknet native library.
 pip install raknet-python
 ```
 
-Prebuilds are provided for 64-bit Windows 10, Linux. If a prebuild does not work, please create an issue.
+Prebuilds are provided for Python3.8 64-bit Windows/Linux. If a prebuild does not work, please create an issue.
 
 # Build
 
