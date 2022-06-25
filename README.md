@@ -11,11 +11,11 @@ Python bindings to rust-raknet native library.
 pip install raknet-python
 ```
 
-Prebuilds are provided for 64-bit Windows 10, Linux. If a prebuild does not work, please create an issue.
+Prebuilds are provided for Python3.8 64-bit Windows/Linux. If a prebuild does not work, please create an issue.
 
 # Build
 
-The RaknetClient and RaknetServer classes are JS wrappers for the internal RaknetSocket and RaknetListener classes implemented in Rust in src/. All methods use asynchronous wrappers.
+The RaknetClient and RaknetServer classes are Python wrappers for the internal RaknetSocket and RaknetListener classes implemented in Rust in src/. All methods use asynchronous wrappers.
 
 
 ```py
